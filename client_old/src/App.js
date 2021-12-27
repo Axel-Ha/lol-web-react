@@ -8,31 +8,17 @@ import { Link, Route, Routes } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <Link to="/">
-        <h1 style={{ container }}>Personnages</h1>
-      </Link>
-      <ul>
-        <li>
-          <Link to="summonerSpells"> Sorts d'invocateur </Link>
-        </li>
-      </ul>
+      <h1 class="container">Personnages</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/champion/:id" element={<ChampionDetails />} />
         <Route path="test" element={<Test />} />
         <Route path="about" element={<About />} />
-        <Route path="/summonerSpells" element={<SummonerSpells />} />
         <Route path="detail/:id" element={<Details />} />
       </Routes>
     </div>
   );
 }
-
-const container = {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-};
 
 const column = {
   display: "flex",
@@ -45,15 +31,14 @@ const row = {
 };
 
 class Home extends React.Component {
-  parentHomeStyle = {
-    display: "flex",
-    justifyContent: "center",
+  championStyle = {
+    justifyContent: "space-around",
+    width: "50%",
   };
 
   homeStyle = {
     flexWrap: "wrap",
-    justifyContent: "space-around",
-    width: "50%",
+    justifyContent: "center",
     ...row,
   };
 
@@ -72,7 +57,7 @@ class Home extends React.Component {
     let champions = this.state.champions;
     let ids = champions.map((champion) => {
       return (
-        <div>
+        <div style={(this.championStyle, column)}>
           <Link to={"champion/" + champion.id}>
             <img src={champion.championImg} />
           </Link>
@@ -81,66 +66,13 @@ class Home extends React.Component {
       );
     });
 
-    return (
-      <div style={this.parentHomeStyle}>
-        <div style={this.homeStyle}>{ids}</div>
-      </div>
-    );
-  }
-}
-
-function SummonerSpells() {
-  const [summonerSpells, setSummonerSpell] = React.useState(null);
-
-  const spellsImgStyle = {
-    marginRight: "10px",
-    height: "70px",
-    width: "70px",
-    marginBottom: "0.5%",
-  };
-
-  React.useEffect(() => {
-    fetch("/api/summonerSpells")
-      .then((res) => res.json())
-      .then((summonerSpells) => setSummonerSpell(summonerSpells));
-  }, []);
-  if (summonerSpells == null) {
-    return <div>Page en cours de chargement</div>;
-  } else {
-    return (
-      <div style={column}>
-        {summonerSpells.map((summonerSpell) => (
-          <div style={row}>
-            <img src={summonerSpell.summonerSpellsImg} style={spellsImgStyle}/>
-            <div style={column}>
-              <strong>{summonerSpell.name}</strong>
-              {summonerSpell.description}
-            </div>
-          </div>
-        ))}
-      </div>
-    );
+    return <div style={this.homeStyle}>{ids}</div>;
   }
 }
 
 function ChampionDetails(props) {
   const [champion, setChampion] = React.useState(null);
   let params = useParams();
-
-  const spellsImgStyle = {
-    marginRight: "10px",
-    height: "100px",
-    width: "100px",
-    marginBottom: "0.5%",
-  };
-  const spellsStyle = {
-    width: "40%",
-    ...column,
-  };
-
-  const loreStyle = {
-    width: "40%",
-  };
 
   React.useEffect(() => {
     fetch("/api/champions/" + params.id)
@@ -153,29 +85,24 @@ function ChampionDetails(props) {
   } else {
     return (
       <div>
-        <img src={champion.championImg} />
         <h1>{champion.name}</h1>
         <h2>{champion.title}</h2>
-        <p style={loreStyle}>{champion.lore} </p>
-
-        <div style={column}>
-          <div style={row}>
-            <img style={spellsImgStyle} src={champion.championPassiveImg} />
-            <div style={spellsStyle}>
-              <strong>{champion.passive.name}</strong>
-              {champion.passive.description}
-            </div>
-          </div>
-        </div>
-
-        <div style={column}>
+        <div>
+          <img
+            src={
+              "http://ddragon.leagueoflegends.com/cdn/11.20.1/img/passive/" +
+              champion.passive["image"].full
+            }
+          />
+          {champion.passive.description}
+          {champion.passive.name}
           {champion.spells.map((spell) => (
-            <div style={row}>
-              <img style={spellsImgStyle} src={spell.spellImg} />
-              <span style={spellsStyle}>
-                <strong>{spell.name}</strong>
-                {spell.description}
-              </span>
+            <div>
+              {spell.name}
+              <img
+                src={spell.spellImg}
+              />
+              {spell.description}
             </div>
           ))}
         </div>
