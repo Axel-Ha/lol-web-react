@@ -32,9 +32,35 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
-// TODO:
-// 1. lister tous les personnages lol via console.log
-// 2. lister tous les sorts d'un personnage console.log
+function getChampions(callback) {
+  http.get(
+    "http://ddragon.leagueoflegends.com/cdn/11.20.1/data/fr_FR/champion.json",
+    (res) => {
+      if (res.statusCode !== 200) {
+        console.error(
+          "Did not get an ok from the server. Code:" + res.statusCode
+        );
+      }
+      let data = "";
+      res.on("data", (chunk) => {
+        data = data + chunk;
+      });
+
+      res.on("close", () => {
+        let newData = JSON.parse(data);
+        //La réponse de l'API LOL est de la forme {championId : data} , on récupère data
+        let championIds = Object.keys(newData.data);
+        let champions = championIds
+          .map((id) => newData.data[id])
+          .map((champion) => {
+            return { ...champion, championImg: getChampionImgUrl(champion.id) };
+          });
+        callback(champions);
+      });
+    }
+  );
+}
+
 function getInfoChampion(idChampion, callback) {
    http.get(
     "http://ddragon.leagueoflegends.com/cdn/11.20.1/data/fr_FR/champion/" +
@@ -71,34 +97,7 @@ function getInfoChampion(idChampion, callback) {
   );
 }
 
-function getChampions(callback) {
-  http.get(
-    "http://ddragon.leagueoflegends.com/cdn/11.20.1/data/fr_FR/champion.json",
-    (res) => {
-      if (res.statusCode !== 200) {
-        console.error(
-          "Did not get an ok from the server. Code:" + res.statusCode
-        );
-      }
-      let data = "";
-      res.on("data", (chunk) => {
-        data = data + chunk;
-      });
 
-      res.on("close", () => {
-        let newData = JSON.parse(data);
-        //La réponse de l'API LOL est de la forme {championId : data} , on récupère data
-        let championIds = Object.keys(newData.data);
-        let champions = championIds
-          .map((id) => newData.data[id])
-          .map((champion) => {
-            return { ...champion, championImg: getChampionImgUrl(champion.id) };
-          });
-        callback(champions);
-      });
-    }
-  );
-}
 
 
 
