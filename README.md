@@ -25,7 +25,7 @@ Pour lancer le projet :
 
 
 ## 4.1 Liste personnages    
-![Liste personnages](Content/Images/liste_personnages.JPG)  
+![Liste personnages](Content/Images/Liste_personnages.JPG)  
 
 ## 4.2 Présentation personnage  
-![Presentation personnage](Content/Images/presentation_personnage.JPG)  
+![Presentation personnage](Content/Images/Presentation_personnage.JPG)  
