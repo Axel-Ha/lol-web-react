@@ -20,7 +20,7 @@ Pour lancer le projet :
   - Aller dans le dossier `\Client`
   - Ouvrer un nouvel invité de commande 
   - Lancer la commande : `npm install`
-  - Lancer cette commande : `npm start`
+  - Entrera à nouveau la commande : `npm start`
 
 ## 4. Images  
 
