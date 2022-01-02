@@ -11,13 +11,12 @@ Toutes les informations de ces personnages sont dynamiquement récupérées depu
 - API de Riot Games (https://developer.riotgames.com/docs/lol)
 
 ## 3. Utilisation  
-Il est possible de le lancer sous Node.  
-Pour lancer le projet :  
+Pour lancer le serveur :  
   - `cd ..\lol-web-react` 
   - `npm install`
   - `npm start`
  
- Dans un nouvel invite de commandes : 
+Pour lancer le client : 
   - `cd  ..\lol-web-react\Client`
   - `npm install`
   - `npm start`
