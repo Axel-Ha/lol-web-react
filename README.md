@@ -16,7 +16,7 @@ Pour lancer le projet :
   - Se rendre dans : `lol-web-react`
   - Ouvrer invite de commandes 
   - Lancer la commande : `npm install`
-  - Lancer ensuite : `npm start`
+  - Suivie de : `npm start`
   - Aller dans : `\Client`
   - Ouvrer un nouvel invite de commandes
   - Lancer la commande : `npm install`
