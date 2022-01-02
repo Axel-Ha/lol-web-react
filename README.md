@@ -18,7 +18,7 @@ Pour lancer le projet :
   - `npm start`
  
  Dans un nouvel invite de commandes : 
-  - `cd  \Client`
+  - `cd  ..\lol-web-react\Client`
   - `npm install`
   - `npm start`
 
