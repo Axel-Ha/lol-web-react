@@ -13,14 +13,14 @@ Toutes les informations de ces personnages sont dynamiquement récupérées depu
 ## 3. Utilisation  
 Il est possible de le lancer sous Node.  
 Pour lancer le projet :  
-  - Aller dans le dossier `lol-web-react`
-  - Ouvrer l'invité de commande 
-  - Lancer la commande suivant : `npm install`
-  - Lancer ensuite ceci : `npm start`
-  - Aller dans le dossier `\Client`
-  - Ouvrer un nouvel invité de commande 
+  - Se rendre dans : `lol-web-react`
+  - Ouvrer invite de commandes 
   - Lancer la commande : `npm install`
-  - Entrera à nouveau la commande : `npm start`
+  - Lancer ensuite : `npm start`
+  - Aller dans : `\Client`
+  - Ouvrer un nouvel invite de commandes
+  - Lancer la commande : `npm install`
+  - Entrer la commande : `npm start`
 
 ## 4. Images  
 
