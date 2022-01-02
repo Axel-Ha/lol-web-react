@@ -13,7 +13,7 @@ Toutes les informations de ces personnages sont dynamiquement récupérées depu
 ## 3. Utilisation  
 Il est possible de le lancer sous Node.  
 Pour lancer le projet :  
-  - `cd lol-web-react` 
+  - `cd \lol-web-react` 
   - `npm install`
   - `npm start`
   - Dans un nouvel invite de commandes 
